@@ -7,8 +7,13 @@ class Public::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.update(cart_item_params)
-    redirect_to cart_items_path
+    if @cart_item.update(cart_item_params)
+      redirect_to cart_items_path
+    else
+      @item = Item.find(params[:id])
+      @genres = Genre.all
+      render "public/items/show"
+    end
   end
 
   def destroy
@@ -34,8 +39,13 @@ class Public::CartItemsController < ApplicationController
         @cart_item.delete
       end
     end
-    @cart_item.save
+    if @cart_item.save
     redirect_to cart_items_path
+  else
+    @customer = current_customer
+    @sum = 0
+    render :index
+  end
   end
 
   private

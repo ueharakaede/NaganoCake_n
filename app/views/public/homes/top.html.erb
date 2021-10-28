@@ -1,31 +1,24 @@
-<div class="main-visual">
-  <div class="main-visual-content">
-    <p class="main-visual-text">
-      ようこそ！ながのCAKEへ！<br>
-      このサイトは、ケーキ販売のECサイトになります。<br>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      ようこそ、ながのCAKEへ！<br>
+      このサイトでは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
       購入には会員登録が必要になります。
-    </p>
+    </div>
   </div>
-</div>
-<div class="comtainer my-5">
-  <div class="row">
-    <h3>新着商品</h3>
+  <div class="row mt-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <h4>新着商品</h4>
+    </div>
   </div>
-<div class="container mx-auto mt-5">
-  <% @items.last(4).each do |f| %>
-  <div class="mx-auto">
-    <%= link_to item_path(item) do %>
-    <%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg', size: '200x200', class: "rounded" %><br>
+  <div class="row mt-3">
+    <% @items.each do |item| %>
+    <div class="col-md-3">
+      <%= attachment_image_tag @item, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+    </div>
     <% end %>
-    <div class="row mt-5">
-      <span class="px-3"><%= item.name %></span>
-    </div>
-    <div class="row mt-3">
-      <span class="offset-8"><%= item_with_tax_price.to_s(:delimited) %>　円</span>
-    </div>
   </div>
-  <% end %>
-</div>
-</div>
-
-
+  
